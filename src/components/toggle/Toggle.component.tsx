@@ -18,6 +18,12 @@ export const ToggleComponent = ({
 
   const animatedValue = useRef(new Animated.Value(isOn ? 1 : 0)).current;
 
+  // Sync with isOn prop changes from Storybook controls
+  useEffect(() => {
+    setToggleValue(isOn);
+    animatedValue.setValue(isOn ? 1 : 0);
+  }, [isOn, animatedValue]);
+
   useEffect(() => {
     Animated.spring(animatedValue, {
       toValue: toggleValue ? 1 : 0,

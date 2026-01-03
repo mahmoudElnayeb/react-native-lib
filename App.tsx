@@ -13,8 +13,14 @@ if (__DEV__) {
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ToggleItemComponent from './src/components/ToggleItem.component';
+import { AppConfig } from './src/config/app.config';
+import StorybookUIRoot from './.rnstorybook';
 
 function App() {
+  // Toggle between Storybook and main app based on config
+  if (AppConfig.SHOW_STORYBOOK) {
+    return <StorybookUIRoot />;
+  }
   return <AppContent />;
 }
 
