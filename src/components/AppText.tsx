@@ -16,5 +16,7 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
     fontSize: 18,
     fontWeight: '500',
+    textAlign: 'center',
+    flexWrap: 'nowrap',
   },
 });

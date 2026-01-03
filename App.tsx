@@ -12,9 +12,11 @@ if (__DEV__) {
 
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import StorybookUIRoot from './.rnstorybook';
+import { AppIcon } from './src/components/AppIcon';
+import { ButtonComponent } from './src/components/button/Button.component';
 import ToggleItemComponent from './src/components/ToggleItem.component';
 import { AppConfig } from './src/config/app.config';
-import StorybookUIRoot from './.rnstorybook';
 
 function App() {
   // Toggle between Storybook and main app based on config
@@ -37,6 +39,17 @@ function AppContent() {
           isOn: true,
           disabled: false,
           onToggle: handleAction,
+        }}
+      />
+      <ButtonComponent
+        ContentComponent={
+          <AppIcon size={50} image={require('./src/assets/mosh.jpg')} />
+        }
+        size={'medium'}
+        type={'outline-no-border'}
+        disabled={false}
+        onClick={() => {
+          console.log('Button clicked');
         }}
       />
     </SafeAreaView>
