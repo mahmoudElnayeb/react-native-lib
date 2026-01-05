@@ -13,10 +13,9 @@ if (__DEV__) {
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import StorybookUIRoot from './.rnstorybook';
-import { AppIcon } from './src/components/AppIcon';
-import { ButtonComponent } from './src/components/button/Button.component';
-import ToggleItemComponent from './src/components/ToggleItem.component';
+import InChipsGroup from './src/components/chips-group/chips-group.component';
 import { AppConfig } from './src/config/app.config';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function App() {
   // Toggle between Storybook and main app based on config
@@ -27,30 +26,34 @@ function App() {
 }
 
 function AppContent() {
-  const handleAction = (value: boolean) => {
-    console.log('Toggle is now: ', value);
-  };
   return (
     <SafeAreaView style={styles.container}>
-      <ToggleItemComponent
-        text="terms & conditions"
-        item={{
-          size: 'medium',
-          isOn: true,
-          disabled: false,
-          onToggle: handleAction,
+      <InChipsGroup
+        items={[
+          { id: 1, label: 'Chip One' },
+          { id: 2, label: 'Chip Two', disabled: true },
+          {
+            id: 3,
+            label: 'Chip Three',
+            icon: <Icon name="email" size={20}></Icon>,
+            iconDirection: 'left',
+          },
+          {
+            id: 4,
+            label: 'Chip Four',
+            icon: <Icon name="email" size={20}></Icon>,
+            iconDirection: 'right',
+          },
+        ]}
+        size="large"
+        type="secondary"
+        direction="column"
+        selectionMode="single"
+        initialSelectedIds={[3]}
+        onSelectionChange={selectedItems => {
+          console.log(selectedItems);
         }}
-      />
-      <ButtonComponent
-        ContentComponent={
-          <AppIcon size={50} image={require('./src/assets/mosh.jpg')} />
-        }
-        size={'medium'}
-        type={'outline-no-border'}
-        disabled={false}
-        onClick={() => {
-          console.log('Button clicked');
-        }}
+        allowDeselect={false}
       />
     </SafeAreaView>
   );

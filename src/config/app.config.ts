@@ -1,3 +1,3 @@
 export const AppConfig = {
-  SHOW_STORYBOOK: true,
+  SHOW_STORYBOOK: false,
 };
